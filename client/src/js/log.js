@@ -8,9 +8,13 @@
     newLog(message)
     nativeLog.apply(console, arguments)
   }
+  console.debug = function (message) {
+    newLog(message, 'debug')
+    nativeLog.apply(console, arguments)
+  }
 })()
 
-function newLog(message) {
+function newLog(message, mode) {
   // Format message
   const now = new Date()
   const time = now.toLocaleTimeString('en-GB', { hour12: false })
@@ -21,6 +25,7 @@ function newLog(message) {
   const logContainer = document.getElementById('log')
   const p = document.createElement('p')
   p.innerText = message
+  if (mode === 'debug') p.classList.add('debug')
   logContainer.appendChild(p)
   logContainer.scrollTop = logContainer.scrollHeight
 

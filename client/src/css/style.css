@@ -54,3 +54,7 @@ main {
   margin: 2px 0;
   color: #555;
 }
+
+#log p.debug {
+  color: #999;
+}

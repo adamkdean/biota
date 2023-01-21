@@ -4,6 +4,9 @@
 
 const SERVER_PORT = 8001
 
+let x = -1
+let y = -1
+
 //
 // P5.js
 //
@@ -17,6 +20,9 @@ function setup() {
 
 function draw() {
   background(255)
+  if (x !== -1 && y !== -1) {
+    ellipse(x, y, 10, 10)
+  }
 }
 
 //
@@ -38,7 +44,21 @@ function onConnected() {
 }
 
 function onMessage(event) {
-  console.log(`> ${event.data}`)
+  console.debug(`${event.data}`)
+  // if event is JSON then parse otherwise ignore
+  try {
+    const msg = JSON.parse(event.data)
+    if (!msg.type) return
+
+    if (msg.type === 'position') {
+      if (!msg.data.x || !msg.data.y) return
+      console.log(`Received position: ${msg.data.x}, ${msg.data.y}`)
+      x = msg.data.x
+      y = msg.data.y
+    }
+  } catch (error) {
+    console.log(`Error parsing incoming message: ${error}`)
+  }
 }
 
 function onDisconnected() {
