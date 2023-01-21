@@ -12,5 +12,6 @@ export const Config = {
   environment: {
     width: parseInt(process.env.ENVIRONMENT_WIDTH) || 960,   // MUST MATCH CLIENT
     height: parseInt(process.env.ENVIRONMENT_HEIGHT) || 600, // MUST MATCH CLIENT
+    updateInterval: parseInt(process.env.ENVIRONMENT_INTERVAL) || 33
   }
 }
