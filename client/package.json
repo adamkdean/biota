@@ -1,0 +1,13 @@
+{
+  "name": "biota-client",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server src"
+  },
+  "author": "Adam K Dean <adamkdean@googlemail.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
