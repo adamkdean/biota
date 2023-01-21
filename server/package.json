@@ -2,9 +2,15 @@
   "name": "biota-server",
   "version": "0.0.1",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "author": "Adam K Dean <adamkdean@googlemail.com>",
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ws": "^8.12.0"
+  }
 }

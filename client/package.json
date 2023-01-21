@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "start": "http-server src"
+    "start": "http-server src -p 8000"
   },
   "author": "Adam K Dean <adamkdean@googlemail.com>",
   "license": "GPL-3.0",
