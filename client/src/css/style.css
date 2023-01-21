@@ -1,0 +1,56 @@
+/*
+  Copyright (C) 2022 Adam K Dean <adamkdean@googlemail.com>
+  Use of this source code is governed by the GPL-3.0
+  license that can be found in the LICENSE file.
+*/
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #fafafa;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#display {
+  border: 1px solid #ccc;
+  width: 960px;
+  height: 600px;
+}
+
+#log {
+  border: 1px solid #ccc;
+  background: #fff;
+  width: 960px;
+  height: 200px;
+  margin-top: 5px;
+  padding: 10px 8px;
+  font-family: Hack, 'Courier New', Courier, monospace;
+  word-wrap: break-word;
+  overflow-y: scroll;
+}
+
+#log p {
+  margin: 2px 0;
+  color: #555;
+}
