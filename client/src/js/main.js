@@ -4,7 +4,6 @@
 
 const SERVER_PORT = 8001
 
-let reconnectInterval = null
 let lifeforms = []
 
 //
@@ -44,10 +43,6 @@ function connect() {
 
 function onConnected() {
   console.log('Connected to server')
-  if (reconnectInterval) {
-    clearInterval(reconnectInterval)
-    reconnectInterval = null
-  }
 }
 
 function onMessage(event) {
@@ -68,7 +63,6 @@ function onMessage(event) {
 
 function onDisconnected() {
   console.log('Disconnected from server')
-  reconnectInterval = setInterval(connect, 1000)
 }
 
 function onError(error) {
