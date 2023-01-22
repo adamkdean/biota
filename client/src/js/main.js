@@ -4,7 +4,8 @@
 
 const SERVER_PORT = 8001
 
-let objects = []
+let reconnectInterval = null
+let lifeforms = []
 
 //
 // P5.js
@@ -19,10 +20,10 @@ function setup() {
 
 function draw() {
   background(255)
-  if (objects.length > 0) {
-    objects.forEach((o) => {
+  if (lifeforms.length > 0) {
+    lifeforms.forEach((o) => {
       fill(o.color.r, o.color.g, o.color.b)
-      ellipse(o.x, o.y, 10, 10)
+      ellipse(o.x, o.y, o.size, o.size)
     })
   }
 }
@@ -43,18 +44,22 @@ function connect() {
 
 function onConnected() {
   console.log('Connected to server')
+  if (reconnectInterval) {
+    clearInterval(reconnectInterval)
+    reconnectInterval = null
+  }
 }
 
 function onMessage(event) {
-  // console.debug(`${event.data}`)
+  console.debug(`${event.data}`)
   // if event is JSON then parse otherwise ignore
   try {
     const msg = JSON.parse(event.data)
-    if (!msg.type) return
+    if (!msg.type || !msg.epoch || !msg.lifeforms) return
 
-    if (msg.type === 'objects') {
-      objects = msg.data
-      console.log(`Received ${objects.length} objects`)
+    if (msg.type === 'update') {
+      lifeforms = msg.lifeforms
+      console.log(`Received ${lifeforms.length} lifeforms for epoch ${msg.epoch}`)
     }
   } catch (error) {
     console.log(`Error parsing incoming message: ${error}`)
@@ -63,6 +68,7 @@ function onMessage(event) {
 
 function onDisconnected() {
   console.log('Disconnected from server')
+  reconnectInterval = setInterval(connect, 1000)
 }
 
 function onError(error) {
