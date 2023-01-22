@@ -10,7 +10,10 @@
   "author": "Adam K Dean <adamkdean@googlemail.com>",
   "license": "GPL-3.0",
   "dependencies": {
+    "@edge/log": "^1.6.2",
+    "chalk": "^5.2.0",
     "dotenv": "^16.0.3",
+    "uuid": "^9.0.0",
     "ws": "^8.12.0"
   }
 }
