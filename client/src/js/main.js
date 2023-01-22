@@ -4,7 +4,7 @@
 
 const SERVER_PORT = 8001
 
-let lifeforms = []
+let world = null
 
 //
 // P5.js
@@ -19,12 +19,19 @@ function setup() {
 
 function draw() {
   background(255)
-  if (lifeforms.length > 0) {
-    lifeforms.forEach((o) => {
+  if (!world) return
+
+  if (world.lifeforms.length > 0) {
+    world.lifeforms.forEach((o) => {
       fill(o.color.r, o.color.g, o.color.b)
       ellipse(o.x, o.y, o.size, o.size)
     })
   }
+
+  fill(0)
+  textSize(16)
+  text(`Epoch: ${world.epoch}`, 10, 30)
+  text(`Lifeforms: ${world.lifeforms.length}`, 10, 50)
 }
 
 //
@@ -53,7 +60,7 @@ function onMessage(event) {
     if (!msg.type || !msg.epoch || !msg.lifeforms) return
 
     if (msg.type === 'update') {
-      lifeforms = msg.lifeforms
+      world = { epoch: msg.epoch, lifeforms: msg.lifeforms }
       console.log(`Received ${lifeforms.length} lifeforms for epoch ${msg.epoch}`)
     }
   } catch (error) {
